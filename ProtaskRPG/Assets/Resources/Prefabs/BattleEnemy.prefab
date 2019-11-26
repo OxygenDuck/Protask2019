@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 3841050824732072860}
   - component: {fileID: 3841050824732072861}
   - component: {fileID: 3841050824732072862}
-  - component: {fileID: 3070856777665431464}
-  - component: {fileID: 7966374682553910088}
+  - component: {fileID: 2058857230121545210}
   m_Layer: 0
-  m_Name: Crab
+  m_Name: BattleEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,8 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -5775181128972557143, guid: 70f91026c6de17a4ab5ba4eb634112a9,
-    type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,7 +79,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &3841050824732072862
@@ -94,7 +92,7 @@ Animator:
   m_GameObject: {fileID: 3841050824732072863}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7e5ec45a935eb2c4da10a9030a7c5a1d, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -103,7 +101,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3070856777665431464
+--- !u!114 &2058857230121545210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,24 +110,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3841050824732072863}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 595cd8912e6e8af4492c81d333e9e043, type: 3}
+  m_Script: {fileID: 11500000, guid: 7008153eafb8e3e46af34d792afbe0a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  offence: 2
-  defence: 2
-  mana: 2
-  speed: 2
-  luck: 1
---- !u!114 &7966374682553910088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3841050824732072863}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aa97600b1744044aac351ce4f541722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  enemyClass: {fileID: 0}

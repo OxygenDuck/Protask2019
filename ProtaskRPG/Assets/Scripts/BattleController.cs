@@ -4,31 +4,27 @@ using UnityEngine;
 
 public class BattleController : MonoBehaviour
 {
-    [SerializeField] private Transform pfCharacterBattle;
+    [SerializeField] private EncounterData encounterData;
 
     private void Start()
     {
-        SpawnCharacter(false);
-        SpawnCharacter(true);
+        //Set enemies
+        //DEBUG: JUST SPAWN 2 CRABS
+        encounterData = new EncounterData();
+        encounterData.Enemies.Add(new Crab());
+        encounterData.Enemies.Add(new Crab());
+
+        for (int i = 0; i < encounterData.Enemies.Count; i++)
+        {
+            GameObject enemy = Instantiate(Resources.Load<GameObject>("Prefabs/BattleEnemy"), new Vector3(0,i * 2,0), new Quaternion());
+            enemy.GetComponent<EnemyBehavior>().enemyClass = encounterData.Enemies[i];
+            enemy.GetComponent<EnemyBehavior>().SetSprite();
+        }
+        //Set Players
+
+
+        //Set first round, determine turn order
     }
 
-    private void SpawnCharacter(bool IsPlayerTeam)
-    {
-        Vector3 position;
-        if (IsPlayerTeam)
-        {
-            position = new Vector3(-5, 0);
-
-        }
-        else
-        {
-            position = new Vector3(5, 0);
-        }
-        GameObject character = Instantiate(pfCharacterBattle, position, Quaternion.identity).gameObject;
-        if (IsPlayerTeam)
-        {
-            character.GetComponent<SpriteRenderer>().color = Color.green;
-        }
-        
-    }
+    //Set round
 }
