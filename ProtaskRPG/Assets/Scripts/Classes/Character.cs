@@ -5,7 +5,10 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public Stats stats = new Stats();
+
+    //Looks
     public EnemySprites sprites; //TODO: Rework this to use player sprites when they are made
+    public Color[] colors = new Color[] { new Color(1, 1, 1), new Color(1, 1, 1), new Color(1, 1, 1)};
 
     public ushort health;
 
