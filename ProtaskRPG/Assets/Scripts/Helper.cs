@@ -11,12 +11,19 @@ static public class Helper
 
     public static EnemySprites EnemyGetSpritesByName(string name)
     {
-        EnemySprites sprites = new EnemySprites();
-        sprites.Attack = Resources.LoadAll<Sprite>(AttackSprites + name);
-        sprites.Idle = Resources.LoadAll<Sprite>(IdleSprites + name);
-        sprites.AttackAnim = Resources.Load<Animation>(AttackAnimation + name);
-        sprites.IdleAnim = Resources.Load<Animation>(IdleAnimation + name);
+        EnemySprites sprites = new EnemySprites
+        {
+            Attack = Resources.LoadAll<Sprite>(AttackSprites + name),
+            Idle = Resources.LoadAll<Sprite>(IdleSprites + name),
+            AttackAnim = Resources.Load<Animation>(AttackAnimation + name),
+            IdleAnim = Resources.Load<Animation>(IdleAnimation + name)
+        };
 
         return sprites;
+    }
+
+    public static void PlayAudio(string source)
+    {
+        AudioSource.PlayClipAtPoint(Resources.Load<AudioClip>("Audio/" + source), new Vector3(0,0));
     }
 }
