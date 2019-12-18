@@ -29,4 +29,11 @@ public class Character : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = sprites.Idle[0];
     }
+
+    public void SetColors(Color head, Color body, Color legs)
+    {
+        colors[0] = head;
+        colors[1] = body;
+        colors[2] = legs;
+    }
 }
