@@ -30,6 +30,7 @@ public class CcColorManager : MonoBehaviour
 
     public void CloseCC()
     {
+        //DEBUG: Show battle character with saved settings
         GameObject newCharacter = Instantiate(Resources.Load<GameObject>("Prefabs/BattleCharacter"));
         newCharacter.GetComponent<Character>().SetColors(head.color, body.color, legs.color);
 
@@ -47,6 +48,8 @@ public class CcColorManager : MonoBehaviour
             }
             sprite.GetComponent<SpriteObject>().SetColor(newCharacter.GetComponent<Character>().colors[i]);
         }
-        
+
+        //Spawn World character
+        GameObject worldCharacter = Instantiate(Resources.Load<GameObject>("Prefabs/OverworldCharacter"));
     }
 }
