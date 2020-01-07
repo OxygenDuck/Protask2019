@@ -1030,7 +1030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a115a09baa50e44902ddf97ada83f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  encounterData: {fileID: 0}
+  encounterData: {fileID: 540340706}
 --- !u!4 &540340705
 Transform:
   m_ObjectHideFlags: 0
@@ -4902,7 +4902,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
     name: 
-    sentences:
-    - Sup Alex
-    - blablabla
-    - Laterz
+    sentences: []

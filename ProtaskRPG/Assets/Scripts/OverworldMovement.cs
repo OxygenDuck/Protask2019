@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OverworldMovement : MonoBehaviour
 {
-    private float worldSpeed = 0.05f;
+    private readonly float worldSpeed = 0.05f;
 
     // Start is called before the first frame update
     void Start()
