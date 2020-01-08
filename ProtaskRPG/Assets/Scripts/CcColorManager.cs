@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CcColorManager : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class CcColorManager : MonoBehaviour
         }
 
         //Spawn World character
+        SceneManager.LoadScene("world");
         GameObject worldCharacter = Instantiate(Resources.Load<GameObject>("Prefabs/OverworldCharacter"));
     }
 }

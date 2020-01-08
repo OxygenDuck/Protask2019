@@ -52,12 +52,6 @@ public class World : MonoBehaviour {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void CreateTiles()
     {
         tiles = new Tile[width,height];
@@ -118,7 +112,7 @@ public class World : MonoBehaviour {
 
         if (tiles.GetLength(0) >= i1 + 100)
         {
-            SubdivideTilesArray(i1 + 100,i2);
+            SubdivideTilesArray(i1 + 100, i2);
             return;
         }
 
