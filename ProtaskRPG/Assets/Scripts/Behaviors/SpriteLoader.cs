@@ -15,7 +15,7 @@ public class SpriteLoader : MonoBehaviour
 
         tileUvMap = new Dictionary<string, Vector2[]>();
 
-        Sprite[] sprites = Resources.LoadAll<Sprite>("");
+        Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/world");
 
         float imageWidth = 0f;
         float imageHeight = 0f;
