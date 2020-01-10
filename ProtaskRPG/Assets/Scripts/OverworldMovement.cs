@@ -19,7 +19,7 @@ public class OverworldMovement : MonoBehaviour
         //Movement
         if (Input.GetKey(KeyCode.W))//go up
         {
-            transform.position += new Vector3(0, worldSpeed);
+                transform.position += new Vector3(0, worldSpeed);      
         }
         else if (Input.GetKey(KeyCode.S))//go down
         {

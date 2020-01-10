@@ -4,69 +4,81 @@ using UnityEngine;
 
 public class Noise 
 {
-    int seed;
+    int seedAdee; //number to make sure the map changes everytime
 
-    float frequency;
-    float amplitude;
-    float lacunarity; //modifies frequency
-    float persistance; // modifies amplitude
-    int octaves;
+    //making the variables off a noise map.
+    float frequencyAdee; //how many times 
+    float amplitudeAdee; //how far it goes 
+    float lacunarityAdee; //modifies frequency
+    float persistanceAdee; // modifies amplitude
+    int octavesAdee; //how many times it must repeat
 
-    public Noise(int seed, float frequency, float amplitude, float lacunarity, float persistance, int octaves)
+    //constructor
+    public Noise(int a_seedAdee, float a_frequencyAdee, float a_amplitudeAdee, float a_lacunarityAdee, float a_persistanceAdee, int a_octavesAdee)
     {
-        this.seed = seed;
-        this.frequency = frequency;
-        this.amplitude = amplitude;
-        this.lacunarity = lacunarity;
-        this.persistance = persistance;
-        this.octaves = octaves;
+        this.seedAdee = a_seedAdee;
+        this.frequencyAdee = a_frequencyAdee;
+        this.amplitudeAdee = a_amplitudeAdee;
+        this.lacunarityAdee = a_lacunarityAdee;
+        this.persistanceAdee = a_persistanceAdee;
+        this.octavesAdee = a_octavesAdee;
     } 
 
-    public float[,] GetNoiseValues(int width, int heigth)
+    //get values of noise map
+    public float[,] GetNoiseValues(int widthAdee, int heigthAdee)
     {
-        float[,] noiseValues = new float[width, heigth];
+        //make two dimensonal arry for the noise values
+        float[,] noiseValuesAdee = new float[widthAdee, heigthAdee];
 
-        float max = 0f;
-        float min = float.MaxValue;
+        float maxAdee = 0f;
+        float minAdee = float.MaxValue;
 
-        for (int i = 0; i < width; i++)
+        //looping through the noise values
+        for (int i = 0; i < widthAdee; i++)
         {
-            for (int j = 0; j < heigth; j++)
+            for (int j = 0; j < heigthAdee; j++)
             {
-                noiseValues[i, j] = 0f;
+                noiseValuesAdee[i, j] = 0f;
 
-                float tempAmp = amplitude;
-                float tempFreq = frequency;
+                //making sure the frequency and amplitude wont fail in the calculation
+                float tempAmpAdee = amplitudeAdee;
+                float tempFreqAdee = frequencyAdee;
 
-                for (int k = 0; k < octaves; k++)
+                //loop throug  amout of octaves aka how much it needs to repeat and calculate the noise map 
+                for (int k = 0; k < octavesAdee; k++)
                 {
-                    noiseValues[i, j] += Mathf.PerlinNoise((i + seed)/ (float)width * frequency, (j + seed) / (float)heigth * frequency) * amplitude;
-                    frequency *= lacunarity;
-                    amplitude *= persistance;
+                    noiseValuesAdee[i, j] += Mathf.PerlinNoise(
+                        (i + seedAdee) / (float)widthAdee * frequencyAdee, 
+                        (j + seedAdee) / (float)heigthAdee * frequencyAdee) * amplitudeAdee;
+                    frequencyAdee *= lacunarityAdee;
+                    amplitudeAdee *= persistanceAdee;
                 }
 
-                amplitude = tempAmp;
-                frequency = tempFreq;
+                amplitudeAdee = tempAmpAdee;
+                frequencyAdee = tempFreqAdee;
 
-                if(noiseValues[i,j] > max)
+                //setting noise values if higher then max
+                if(noiseValuesAdee[i,j] > maxAdee)
                 {
-                    max = noiseValues[i, j];
+                    maxAdee = noiseValuesAdee[i, j];
                 }
-                if (noiseValues[i, j] < min)
+                //setting noise values if less then min
+                if (noiseValuesAdee[i, j] < minAdee)
                 {
-                    min = noiseValues[i, j];
+                    minAdee = noiseValuesAdee[i, j];
                 }
             }
         }
 
-        for (int i = 0; i < width; i++)
+        //loop through noise values and inverse them
+        for (int i = 0; i < widthAdee; i++)
         {
-            for (int j = 0; j < heigth; j++)
+            for (int j = 0; j < heigthAdee; j++)
             {
-                noiseValues[i, j] = Mathf.InverseLerp(max,min,noiseValues[i,j]);
+                noiseValuesAdee[i, j] = Mathf.InverseLerp(maxAdee, minAdee, noiseValuesAdee[i,j]);
             }
         }
 
-        return noiseValues;
+        return noiseValuesAdee;
     }
 }

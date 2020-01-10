@@ -6,66 +6,65 @@ public class SpriteLoader : MonoBehaviour
 {
     public static SpriteLoader instance;
 
-    Dictionary<string, Vector2[]> tileUvMap;
+    public Dictionary<string, Vector2[]> tileUvMapAdee;
 
-    // Start is called before the first frame update
     void Awake()
     {
         instance = this;
 
-        tileUvMap = new Dictionary<string, Vector2[]>();
+        //making map of the tiles
+        tileUvMapAdee = new Dictionary<string, Vector2[]>();
 
-        Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites/world");
+        //load all sprites
+        Sprite[] spritesAdee = Resources.LoadAll<Sprite>("Sprites/world");
 
-        float imageWidth = 0f;
-        float imageHeight = 0f;
+        float imageWidthAdee = 0f;
+        float imageHeightAdee = 0f;
 
-        foreach (Sprite s in sprites)
+        //loop through all sprites
+        foreach (Sprite s in spritesAdee)
         {
-            if(s.rect.x + s.rect.width > imageWidth)
+            if(s.rect.x + s.rect.width > imageWidthAdee)
             {
-                imageWidth = s.rect.x + s.rect.width;
+                imageWidthAdee = s.rect.x + s.rect.width;
             }
 
-            if (s.rect.y + s.rect.height > imageHeight)
+            if (s.rect.y + s.rect.height > imageHeightAdee)
             {
-                imageHeight = s.rect.y + s.rect.height;
+                imageHeightAdee = s.rect.y + s.rect.height;
             }
         }
 
-        foreach (Sprite s in sprites)
+        //loop to sprite to add them to tiles
+        foreach (Sprite s in spritesAdee)
         {
-            Vector2[] uvs = new Vector2[4];
+            Vector2[] uvsAdee = new Vector2[4];
 
-            uvs[0] = new Vector2(s.rect.x / imageWidth, s.rect.y / imageHeight); //bottom left corner
-            uvs[1] = new Vector2((s.rect.x + s.rect.width) / imageWidth, s.rect.y / imageHeight); // bottom right corner
-            uvs[2] = new Vector2(s.rect.x / imageWidth, (s.rect.y + s.rect.height) / imageHeight); // top left corner
-            uvs[3] = new Vector2((s.rect.x + s.rect.width) / imageWidth, (s.rect.y + s.rect.height) / imageHeight); // top right corner
+            uvsAdee[0] = new Vector2(s.rect.x / imageWidthAdee, s.rect.y / imageHeightAdee); //bottom left corner
+            uvsAdee[1] = new Vector2((s.rect.x + s.rect.width) / imageWidthAdee, s.rect.y / imageHeightAdee); // bottom right corner
+            uvsAdee[2] = new Vector2(s.rect.x / imageWidthAdee, (s.rect.y + s.rect.height) / imageHeightAdee); // top left corner
+            uvsAdee[3] = new Vector2((s.rect.x + s.rect.width) / imageWidthAdee, (s.rect.y + s.rect.height) / imageHeightAdee); // top right corner
 
-            tileUvMap.Add(s.name, uvs);
+            //adding sprites to the tiles
+            tileUvMapAdee.Add(s.name, uvsAdee);
 
-            Debug.Log(s.name + ": " + uvs[0] + "," + uvs[1] + "," + uvs[2] + "," + uvs[3] + ",");
+            Debug.Log(s.name + ": " + uvsAdee[0] + "," + uvsAdee[1] + "," + uvsAdee[2] + "," + uvsAdee[3] + ",");
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //get the tiles
     public Vector2[] GetTileUvs(Tile tile)
     {
-        string key = tile.type.ToString();
+        string keyAdee = tile.typeAdee.ToString();
 
-        if (tileUvMap.ContainsKey(key))
+        if (tileUvMapAdee.ContainsKey(keyAdee))
         {
-            return tileUvMap[key];
+            return tileUvMapAdee[keyAdee];
         }
         else
         {
             Debug.LogError("failed to get tile uvs");
-            return tileUvMap["Void"];
+            return tileUvMapAdee["Void"];
         }
     }
 }

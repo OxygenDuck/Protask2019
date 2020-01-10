@@ -4,42 +4,49 @@ using UnityEngine;
 
 public class MeshData 
 {
-    public List<Vector3> vertices;
-    public List<Vector2> uvs;
-    public List<int> triangles;
+    public static MeshData instance;
 
-    public MeshData (int x, int y, int width, int height)
+    public List<Vector3> verticesAdee;
+    public List<Vector2> uvsAdee;
+    public List<int> trianglesAdee;
+
+    public MeshData (int xAdee, int yAdee, int widthAdee, int heightAdee)
     {
-        vertices = new List<Vector3>();
-        uvs = new List<Vector2>();
-        triangles = new List<int>();
+        verticesAdee = new List<Vector3>();
+        uvsAdee = new List<Vector2>();
+        trianglesAdee = new List<int>();
 
-        for (int i = x; i < width + x; i++)
+        //creating the physical square in unity aka making a mesh
+        for (int i = xAdee; i < widthAdee + xAdee; i++)
         {
-            for (int j = y; j < height + y; j++)
+            for (int j = yAdee; j < heightAdee + yAdee; j++)
             {
                 CreateSquare(i, j);
             }
         }
     }
 
-    void CreateSquare(int x, int y)
+    void CreateSquare(int xAdee, int yAdee)
     {
-        Tile tile = World.instance.GetTileAt(x, y);
+        Tile tileAdee = World.instance.GetTileAt(xAdee, yAdee);
 
-        vertices.Add(new Vector3(x + 0, y + 0)); //bottom left corner
-        vertices.Add(new Vector3(x + 1, y + 0)); //bottom right corner
-        vertices.Add(new Vector3(x + 0, y + 1)); //top left corner
-        vertices.Add(new Vector3(x + 1, y + 1)); //top right corner
+        //creating square tile
+        verticesAdee.Add(new Vector3(xAdee + 0, yAdee + 0)); //bottom left corner
+        verticesAdee.Add(new Vector3(xAdee + 1, yAdee + 0)); //bottom right corner
+        verticesAdee.Add(new Vector3(xAdee + 0, yAdee + 1)); //top left corner
+        verticesAdee.Add(new Vector3(xAdee + 1, yAdee + 1)); //top right corner
 
-        triangles.Add(vertices.Count - 1);
-        triangles.Add(vertices.Count - 3);
-        triangles.Add(vertices.Count - 4);
+        //adding first triangle to the square tile
+        trianglesAdee.Add(verticesAdee.Count - 1);
+        trianglesAdee.Add(verticesAdee.Count - 3);
+        trianglesAdee.Add(verticesAdee.Count - 4);
 
-        triangles.Add(vertices.Count - 2);
-        triangles.Add(vertices.Count - 1);
-        triangles.Add(vertices.Count - 4);
+        //adding second triangle to the square tile
+        trianglesAdee.Add(verticesAdee.Count - 2);
+        trianglesAdee.Add(verticesAdee.Count - 1);
+        trianglesAdee.Add(verticesAdee.Count - 4);
 
-        uvs.AddRange(SpriteLoader.instance.GetTileUvs(tile));
+        //adding square with triangles in it
+        uvsAdee.AddRange(SpriteLoader.instance.GetTileUvs(tileAdee));
     }
 }

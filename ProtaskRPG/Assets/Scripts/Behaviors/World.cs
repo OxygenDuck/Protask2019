@@ -6,78 +6,82 @@ public class World : MonoBehaviour {
 
     public static World instance;
 
-    public Material material;
+    public Material materialAdee;
 
-    public int width;
-    public int height;
+    public int widthAdee;
+    public int heightAdee;
 
-    public Tile[,] tiles;
+    public Tile[,] tilesAdee;
 
-    public int seed;
-    public bool randomSeed;
+    public int seedAdee; //number to make sure the map changes everytime
+    public bool randomSeedAdee; //making it able to disable random seed and get the same map everytime
 
-    public float frequency;
-    public float amplitude;
-    public float lacunarity; //modifies frequency
-    public float persistance; // modifies amplitude
-    public int octaves;
+    public float frequencyAdee; //how many times 
+    public float amplitudeAdee; //how far it goes 
+    public float lacunarityAdee; //modifies frequency
+    public float persistanceAdee; // modifies amplitude
+    public int octavesAdee; //how many times it must repeat
 
-    public float seaLevel;
+    public float seaLevelAdee; //sea level
 
-    public float beachStartHeight;
-    public float beachEndHeight;
+    public float beachStartHeightAdee; //start off the beach
+    public float beachEndHeightAdee; //end of the beach
 
-    public float grassStartHeight;
-    public float grassEndHeight;
+    public float grassStartHeightAdee; //start of grass
+    public float grassEndHeightAdee; //end of grass
 
-    Noise noise;
+    Noise noiseAdee;
 
-    // Start is called before the first frame update
+    
     void Awake()
     {
         instance = this;
 
-        if (randomSeed)
+        if (randomSeedAdee)
         {
-            int value = Random.Range(-2500, 0);
-            seed = value;
+            int valueAdee = Random.Range(-2500, 0);
+            seedAdee = valueAdee;
         }
 
-        noise = new Noise(seed, frequency, amplitude, lacunarity, persistance, octaves);
+        noiseAdee = new Noise(seedAdee, frequencyAdee, amplitudeAdee, lacunarityAdee, persistanceAdee, octavesAdee);
     }
     void Start()
     {
+        //creating tiles
         CreateTiles();
+        //divinding tiles into chunks to make performance better
         SubdivideTilesArray();
         
     }
 
     void CreateTiles()
     {
-        tiles = new Tile[width,height];
+        //creating the tiles
+        tilesAdee = new Tile[widthAdee, heightAdee];
 
-        float[,] noiseValues = noise.GetNoiseValues(width, height);
+        float[,] noiseValuesAdee = noiseAdee.GetNoiseValues(widthAdee, heightAdee);
 
-        for (int i = 0; i < width; i++)
+        for (int i = 0; i < widthAdee; i++)
         {
-            for (int j = 0; j < height; j++)
+            for (int j = 0; j < heightAdee; j++)
             {
-                tiles[i, j] = MakeTileAtHeight(noiseValues[i, j]);
+                tilesAdee[i, j] = MakeTileAtHeight(noiseValuesAdee[i, j]);
             }
         }
     }
 
-    Tile MakeTileAtHeight(float currentHeight)
+    Tile MakeTileAtHeight(float currentHeightAdee)
     {
-        if(currentHeight <= seaLevel)
+        //check the height to make sure what type of material to use
+        if(currentHeightAdee <= seaLevelAdee)
         {
             return new Tile(Tile.Type.Water);
         }
-        if (currentHeight >= beachStartHeight && currentHeight <= beachEndHeight)
+        if (currentHeightAdee >= beachStartHeightAdee && currentHeightAdee <= beachEndHeightAdee)
         {
             return new Tile(Tile.Type.Sand);
         }
-        if (currentHeight >= grassStartHeight && currentHeight <= grassEndHeight)
+        if (currentHeightAdee >= grassStartHeightAdee && currentHeightAdee <= grassEndHeightAdee)
         {
             return new Tile(Tile.Type.Grass);
         }
@@ -85,68 +89,75 @@ public class World : MonoBehaviour {
         return new Tile(Tile.Type.Void);
     }
 
-    void SubdivideTilesArray(int i1 = 0, int i2 = 0)
+    void SubdivideTilesArray(int i1Adee = 0, int i2Adee = 0)
     {
         //getting lenght of a segment
-        int sizeX, sizeY;
+        int sizeXAdee, sizeYAdee;
 
-        if(tiles.GetLength(0) - i1 > 100)
+        if(tilesAdee.GetLength(0) - i1Adee > 100)
         {
-            sizeX = 100;
+            sizeXAdee = 100;
         }
         else
         {
-            sizeX = tiles.GetLength(0) - i1;
+            sizeXAdee = tilesAdee.GetLength(0) - i1Adee;
         }
 
-        if (tiles.GetLength(1) - i2 > 100)
+        if (tilesAdee.GetLength(1) - i2Adee > 100)
         {
-            sizeY = 100;
+            sizeYAdee = 100;
         }
         else
         {
-            sizeY = tiles.GetLength(1) - i2;
+            sizeYAdee = tilesAdee.GetLength(1) - i2Adee;
         }
 
-        GenerateMesh(i1,i2, sizeX, sizeY);
+        //generate the mesh
+        GenerateMesh(i1Adee, i2Adee, sizeXAdee, sizeYAdee);
 
-        if (tiles.GetLength(0) >= i1 + 100)
+        if (tilesAdee.GetLength(0) >= i1Adee + 100)
         {
-            SubdivideTilesArray(i1 + 100, i2);
+            //make the chunks
+            SubdivideTilesArray(i1Adee + 100, i2Adee);
             return;
         }
 
-        if (tiles.GetLength(1) >= i2 + 100)
+        if (tilesAdee.GetLength(1) >= i2Adee + 100)
         {
-            SubdivideTilesArray(0, i2 + 100);
+            //make the chunks
+            SubdivideTilesArray(0, i2Adee + 100);
             return;
         }
     }
 
-    void GenerateMesh(int x,int y, int width, int height)
+    //generating the mesh with the tiles and it material
+    void GenerateMesh(int xAdee, int yAdee, int widthAdee, int heightAdee)
     {
-        MeshData data = new MeshData(x,y, width, height);
+        MeshData dataAdee = new MeshData(xAdee, yAdee, widthAdee, heightAdee);
 
-        GameObject meshGO = new GameObject("CHUNK_" + x + "_" + y);
-        meshGO.transform.SetParent(this.transform);
+        //creating chunk gameo bject
+        GameObject meshGOAdee = new GameObject("CHUNK_" + xAdee + "_" + yAdee);
+        meshGOAdee.transform.SetParent(this.transform);
 
-        MeshFilter filter = meshGO.AddComponent<MeshFilter>();
-        MeshRenderer renderer = meshGO.AddComponent<MeshRenderer>();
-        renderer.material = material;
+        //render game object
+        MeshFilter filterAdee = meshGOAdee.AddComponent<MeshFilter>();
+        MeshRenderer rendererAdee = meshGOAdee.AddComponent<MeshRenderer>();
+        rendererAdee.material = materialAdee;
 
-        Mesh mesh = filter.mesh;
+        Mesh meshAdee = filterAdee.mesh;
 
-        mesh.vertices = data.vertices.ToArray();
-        mesh.triangles = data.triangles.ToArray();
-        mesh.uv = data.uvs.ToArray();
+        meshAdee.vertices = dataAdee.verticesAdee.ToArray();
+        meshAdee.triangles = dataAdee.trianglesAdee.ToArray();
+        meshAdee.uv = dataAdee.uvsAdee.ToArray();
     }
 
-    public Tile GetTileAt(int x, int y)
+    //get tile at postion
+    public Tile GetTileAt(int xAdee, int yAdee)
     {
-        if (x < 0 || x >= width || y < 0 || y >= height)
+        if (xAdee < 0 || xAdee >= widthAdee || yAdee < 0 || yAdee >= heightAdee)
         {
             return null;
         }
-        return tiles[x, y];
+        return tilesAdee[xAdee, yAdee];
     }
 }

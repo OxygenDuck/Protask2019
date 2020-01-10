@@ -6,20 +6,23 @@ public class Tile
 {
     public enum Type
     {
+        //list of the types of materials of the map
         Grass,
         Sand,
         Water,
         Void
     } 
-    public Type type;
+    public Type typeAdee;
 
-    public Tile(Type type)
+    //constructor
+    public Tile(Type a_typeAdee)
     {
-        this.type = type;
+        this.typeAdee = a_typeAdee;
     }
 
-    public void SetTile(Type newType)
+    //setting the tile to the type
+    public void SetTile(Type newTypeAdee)
     {
-        type = newType;
+        typeAdee = newTypeAdee;
     }
 }

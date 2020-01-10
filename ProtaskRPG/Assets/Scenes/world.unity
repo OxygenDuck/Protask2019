@@ -339,21 +339,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e7508d590c37a54db04252e152c78d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: da7855b36925a62458c9633e0b4985d1, type: 2}
-  width: 1
-  height: 1
-  seed: 0
-  randomSeed: 1
-  frequency: 10
-  amplitude: 7
-  lacunarity: 0.5
-  persistance: 0.6
-  octaves: 2300
-  seaLevel: 0.45
-  beachStartHeight: 0.45
-  beachEndHeight: 0.51
-  grassStartHeight: 0.51
-  grassEndHeight: 1
+  materialAdee: {fileID: 2100000, guid: da7855b36925a62458c9633e0b4985d1, type: 2}
+  widthAdee: 100
+  heightAdee: 100
+  seedAdee: 0
+  randomSeedAdee: 1
+  frequencyAdee: 10
+  amplitudeAdee: 7
+  lacunarityAdee: 0.5
+  persistanceAdee: 0.6
+  octavesAdee: 24
+  seaLevelAdee: 0.45
+  beachStartHeightAdee: 0.45
+  beachEndHeightAdee: 0.51
+  grassStartHeightAdee: 0.51
+  grassEndHeightAdee: 1
 --- !u!4 &1936167978
 Transform:
   m_ObjectHideFlags: 0
