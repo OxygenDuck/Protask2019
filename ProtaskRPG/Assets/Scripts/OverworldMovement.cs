@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class OverworldMovement : MonoBehaviour
 {
+    //The speed at which the character moves
     private readonly float worldSpeed = 0.05f;
 
     // Start is called before the first frame update

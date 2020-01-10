@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+//class to store dialogue
 public class Dialogue
 {
     public string name;

@@ -8,10 +8,11 @@ public class Character : MonoBehaviour
 
     //Looks
     public EnemySprites sprites; //TODO: Rework this to use player sprites when they are made
-    public Color[] colors = new Color[] { new Color(1, 1, 1), new Color(1, 1, 1), new Color(1, 1, 1)};
+    public Color[] colors = new Color[] { new Color(1, 1, 1), new Color(1, 1, 1), new Color(1, 1, 1)}; //Saves the chosen colours for the character
 
-    public ushort health;
+    public ushort health; //the current health
 
+    //Execute before first frame
     void Start()
     {
         stats.level = 5;
@@ -25,11 +26,13 @@ public class Character : MonoBehaviour
         sprites = Helper.EnemyGetSpritesByName(name);
     }
 
+    //Set sprite
     public void SetSprite()
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = sprites.Idle[0];
     }
 
+    //Set Colors
     public void SetColors(Color head, Color body, Color legs)
     {
         colors[0] = head;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SpriteObject : MonoBehaviour
 {
+    //Set sprite
     public void SetSprite(string path)
     {
         string fullPath = "Sprites/" + path;
@@ -11,6 +12,7 @@ public class SpriteObject : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(fullPath);
     }
 
+    //Set sprite color
     public void SetColor(Color color)
     {
         gameObject.GetComponent<SpriteRenderer>().color = color;

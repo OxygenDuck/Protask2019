@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class CcColorManager : MonoBehaviour
 {
-    public SpriteRenderer head;
-    public SpriteRenderer body;
-    public SpriteRenderer legs;
+    public SpriteRenderer head; //Head Preview Object
+    public SpriteRenderer body; //Body Preview Object
+    public SpriteRenderer legs; //Legs Preview Object
 
+    //Set the colors of the preview
     public void SetColors()
     {
         float headRed = GameObject.Find("sldHeadRed").GetComponent<Slider>().value / 100;
@@ -29,6 +30,8 @@ public class CcColorManager : MonoBehaviour
         legs.color = new Color(legsRed, legsGreen, legsBlue);
     }
 
+
+    //Close the Character Creator
     public void CloseCC()
     {
         //DEBUG: Show battle character with saved settings
