@@ -93,8 +93,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9d2567eaf9d78640bae4db922b92248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Raver
+  unitName: Crabboi
   unitLevel: 6
   strength: 10
-  maxHp: 69
-  currentHp: 69
+  maxHp: 2
+  currentHp: 2
