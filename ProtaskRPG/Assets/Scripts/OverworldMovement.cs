@@ -19,7 +19,7 @@ public class OverworldMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PauseMenu.gameIsPausedAdee != true)
+        if(!PauseMenu.gameIsPausedAdee && WorldController.worldstate == Worldstate.MOVE)
         {
             //Movement
             if (Input.GetKey(KeyCode.W))//go up
