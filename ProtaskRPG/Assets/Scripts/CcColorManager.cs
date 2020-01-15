@@ -34,24 +34,8 @@ public class CcColorManager : MonoBehaviour
     //Close the Character Creator
     public void CloseCC()
     {
-        //DEBUG: Show battle character with saved settings
-        GameObject newCharacter = Instantiate(Resources.Load<GameObject>("Prefabs/BattleCharacter"));
-        newCharacter.GetComponent<Character>().SetColors(head.color, body.color, legs.color);
-
         gameObject.transform.parent.gameObject.SetActive(false);
-
-        for (int i = 0; i < 3; i++)
-        {
-            GameObject sprite = Instantiate(Resources.Load<GameObject>("Prefabs/SpriteObject"), newCharacter.transform);
-            sprite.transform.SetParent(newCharacter.transform);
-            switch (i)
-            {
-                case 0: sprite.GetComponent<SpriteObject>().SetSprite("Character/Battle/battleHead"); break;
-                case 1: sprite.GetComponent<SpriteObject>().SetSprite("Character/Battle/battleBody"); break;
-                case 2: sprite.GetComponent<SpriteObject>().SetSprite("Character/Battle/battleLegs"); break;
-            }
-            sprite.GetComponent<SpriteObject>().SetColor(newCharacter.GetComponent<Character>().colors[i]);
-        }
+        WorldController.CharacterColors = new Color[] { head.color, body.color, legs.color };
 
         //Spawn World character
         SceneManager.LoadScene("world");

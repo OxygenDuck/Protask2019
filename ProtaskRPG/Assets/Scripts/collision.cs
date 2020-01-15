@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class collision : MonoBehaviour
 {
+    GameObject battleController;
     public void OnCollisionEnter2D(Collision2D collisionAdee)
     {
-        Debug.Log("test");
+        battleController = GameObject.Find("BattleController");
+        battleController.GetComponent<BattleSystem>().StartBattle();
     }
 }
