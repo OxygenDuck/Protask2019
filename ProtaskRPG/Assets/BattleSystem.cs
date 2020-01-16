@@ -3,25 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Battle state enum
 public enum BattleState { NONE, START, PLAYERTURN, ENEMYTURN, WON, LOST, RAN }
 
+//Battle system handler
 public class BattleSystem : MonoBehaviour
 {
-    public BattleState state;
+    public BattleState state; //The current battle state
 
-    public GameObject battleCanvas;
+    public GameObject battleCanvas; //The canvas object of the battle UI
 
-    public GameObject PlayerPosition;
+    //Character positions in the canvas
+    public GameObject PlayerPosition; 
     public GameObject EnemyPosition;
 
+    //Player and enemy objects
     GameObject Player;
     GameObject EnemyPrefab;
 
+    //Unit classes in the player and enemy objects
     Unit PlayerUnit;
     Unit EnemyUnit;
 
+    //text in the dialogue
     public Text DialogueText;
 
+    //References to the HUD display for the player and enemy
     public BattleHUD PlayerHUD;
     public BattleHUD EnemyHUD;
 
@@ -31,6 +38,7 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.NONE;
     }
 
+    //Start a battle
     public void StartBattle()
     {
         Player = GameObject.Find("Player");
@@ -40,6 +48,7 @@ public class BattleSystem : MonoBehaviour
         WorldController.worldstate = Worldstate.BATTLE;
     }
 
+    //Setup of the battle
     IEnumerator SetupBattle()
     {
         GameObject PlayerSprite = Instantiate(Resources.Load<GameObject>("Prefabs/BattleCharacter"), PlayerPosition.transform);
@@ -75,6 +84,7 @@ public class BattleSystem : MonoBehaviour
         PlayerTurn();
     }
 
+    //Player turn
     void PlayerTurn()
     {
         state = BattleState.PLAYERTURN;
@@ -114,6 +124,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    //Enemy Turn
     IEnumerator EnemyTurn()
     {
         DialogueText.text = "The wild " + EnemyUnit.unitName  + " attacked " + PlayerUnit.unitName + "!";
@@ -136,6 +147,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    //Healing
     public void OnHealButton()
     {
         if (state != BattleState.PLAYERTURN)
@@ -159,6 +171,7 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(EnemyTurn());
     }
 
+    //Running
     public void OnRunButton()
     {
         if (state != BattleState.PLAYERTURN)
@@ -179,6 +192,7 @@ public class BattleSystem : MonoBehaviour
         EndBattle();
     }
 
+    //ending a battle
     public void EndBattle()
     {
         switch (state)
@@ -217,6 +231,7 @@ public class BattleSystem : MonoBehaviour
         ExitBattle();
     }
 
+    //Exit a battle
     void ExitBattle()
     {
         state = BattleState.NONE;

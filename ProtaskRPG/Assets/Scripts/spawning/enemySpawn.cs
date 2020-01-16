@@ -18,6 +18,7 @@ public class enemySpawn : MonoBehaviour
 
     }
 
+    //spawn enemy
     public void spawnEnemy()
     {
         for (int i = 0; i < 15; i++)

@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Unit class for battle participants
 public class Unit : MonoBehaviour
 {
-    public string unitName;
-    public int unitLevel;
-    public int strength;
-    public int maxHp;
-    public int currentHp;
+    public string unitName; //Name
+    public int unitLevel; //Level
+    public int strength; //Attack power
+    public int maxHp; //Maximum health
+    public int currentHp; //Current health
 
+    //Take damage
     public bool TakeDamage(int damage)
     {
         currentHp -= damage;
@@ -22,6 +24,7 @@ public class Unit : MonoBehaviour
         return false;
     }
 
+    //Get the current HP
     public int GetCurrentHP()
     {
         if (currentHp < 0)
@@ -32,6 +35,7 @@ public class Unit : MonoBehaviour
         return currentHp;
     }
 
+    //Heal
     public void Heal()
     {
         currentHp += strength;

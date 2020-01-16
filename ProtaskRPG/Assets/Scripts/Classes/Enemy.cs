@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Deprecated Enemy class
 public class Enemy : MonoBehaviour
 {
     public Stats stats = new Stats();
