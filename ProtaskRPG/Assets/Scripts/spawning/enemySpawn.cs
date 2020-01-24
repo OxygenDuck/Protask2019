@@ -23,7 +23,7 @@ public class enemySpawn : MonoBehaviour
     {
         for (int i = 0; i < 15; i++)
         {
-            Instantiate(Resources.Load<GameObject>("Prefabs/Crab"), new Vector3(Random.Range(0, World.instance.widthAdee), Random.Range(0, World.instance.heightAdee), -0.5f), new Quaternion());
+            Instantiate(Resources.Load<GameObject>("Prefabs/Crab"), new Vector3(Random.Range(0, World.instance.widthAdee), Random.Range(0, World.instance.heightAdee), -0.5f), new Quaternion()); //spawn enemy in game
         }
     }
 }
